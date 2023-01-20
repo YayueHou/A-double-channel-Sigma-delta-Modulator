@@ -1,0 +1,97 @@
+@(#)$CDS: LVS version 6.1.7-64b 07/10/2018 19:52 (sjfhw317) $
+
+Command line: /eda/cadence/IC617_721/tools.lnx86/dfII/bin/64bit/LVS -dir /home/eda/gpdk45_home/LVS -l -s -t /home/eda/gpdk45_home/LVS/layout /home/eda/gpdk45_home/LVS/schematic
+Like matching is enabled.
+Net swapping is enabled.
+Using terminal names as correspondence points.
+
+ GENERIC PDK LVS Rules
+
+    Net-list summary for /home/eda/gpdk45_home/LVS/layout/netlist
+       count
+        4               nets
+        4               terminals
+        1               g45p1svt
+        1               g45n1svt
+
+    Net-list summary for /home/eda/gpdk45_home/LVS/schematic/netlist
+       count
+        4               nets
+        4               terminals
+        1               g45p1svt
+        1               g45n1svt
+
+
+    Terminal correspondence points
+    N2        N3        A
+    N3        N0        VDD
+    N0        N2        VSS
+    N1        N1        Y
+
+Devices in the rules but not in the netlist:
+        g45n1hvt g45n1lvt g45n1nvt g45n2svt g45n2nvt g45p1hvt g45p1lvt
+        g45p2svt g45pd1lvt g45nd1hvt g45nd1lvt g45nd1nvt g45nd2svt g45nd2nvt
+        g45pd1hvt g45pd2svt g45rm1 g45rm2 g45rm3 g45rm4 g45rm5 g45rm6 g45rm7
+        g45rm8 g45rm9 g45rm10 g45rm11 g45rnsnd g45rnsnp g45rnspd g45rnspp
+        g45rnwoxide g45rnwsti g45rsnd g45rsnp g45rspd g45rspp g45ncap1
+        g45ncap2 g45pcap1 g45pcap2 pnp npn g45vnpn2 g45vnpn5 g45vnpn10
+        g45vpnp2 g45vpnp5 g45vpnp10 g45nd1svt g45pd1svt g45cmim g45inda
+        g45inds
+
+The net-lists match.
+
+                             layout  schematic
+                                instances
+        un-matched              0       0      
+        rewired                 0       0      
+        size errors             0       0      
+        pruned                  0       0      
+        active                  2       2      
+        total                   2       2      
+
+                                  nets
+        un-matched              0       0      
+        merged                  0       0      
+        pruned                  0       0      
+        active                  4       4      
+        total                   4       4      
+
+                                terminals
+        un-matched              0       0      
+        matched but
+        different type          0       0      
+        total                   4       4      
+
+
+Probe files from /home/eda/gpdk45_home/LVS/schematic
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
+
+
+Probe files from /home/eda/gpdk45_home/LVS/layout
+
+devbad.out:
+
+netbad.out:
+
+mergenet.out:
+
+termbad.out:
+
+prunenet.out:
+
+prunedev.out:
+
+audit.out:
