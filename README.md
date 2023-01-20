@@ -1,6 +1,6 @@
 # A-double-channel-Sigma-delta-Modulator
-The whole project and the .log are in /design_files/project
-And the details of how this project is going on and finished is in /A Double channel Sigma.docx
+* The whole project and the .log are in /design_files/project 
+* The details of how this project is going on and finished is in /A Double channel Sigma.pdf
 ## Modulator Discription
 * This is a sigma-delta modulator used in DAC with 4 orders of dynamic element match.
 * The design is divided into four layers: Adders.v, dsm_top.v, dem_top.v, dsm_dem_top.v
