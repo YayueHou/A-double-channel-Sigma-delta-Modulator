@@ -1,0 +1,35 @@
+floorPlan -d 960 960 220 220 220 220
+globalNetConnect VDD -type pgpin -pin VDD -inst * -verbose
+globalNetConnect VSS -type pgpin -pin VSS -inst * -verbose
+globalNetConnect VDD -type tiehi -verbose
+globalNetConnect VSS -type tielo -verbose
+
+
+addRing -nets {VDD VSS} -width 0.6 -spacing 0.5\
+            -layer [list top 7 bottom 7 left 6 right 6]
+addStripe -nets {VSS VDD} -layer 6 -direction vertical \
+            -width 0.4 -spacing 0.5 -set_to_set_distance 5 -start 0.5
+addStripe -nets {VSS VDD} -layer 7 -direction horizontal \
+            -width 0.4 -spacing 0.5 -set_to_set_distance 5 -start 0.5
+sroute -nets {VDD VSS}
+
+setDesignMode -process 45
+
+place_opt_design
+#timeDesign -preCTS -outDir prectsOptTimingReports
+
+set_ccopt_property use_inverters true
+ccopt_design
+#timeDesign -postCTS -outDir postctsOptTimingReports
+
+routeDesign
+setAnalysisMode -analysisType onChipVariation
+timeDesign -postRoute -outDir postrouteTimingReports
+
+setFillerMode -corePrefix FILLER -core "FILL1 FILL2 FILL4 FILL8 FILL16 FILL32 FILL64"
+addFiller
+
+addIoFiller -cell {padIORINGFEED1} -fillAnyGap -side left
+addIoFiller -cell {padIORINGFEED1} -fillAnyGap -side right
+addIoFiller -cell {padIORINGFEED1} -fillAnyGap -side top
+addIoFiller -cell {padIORINGFEED1} -fillAnyGap -side bottom

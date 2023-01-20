@@ -1,0 +1,108 @@
+
+module dsm_dem_top(mclk512,reset,exchangeLR,
+               dsm_chan1,dsm_chan2,dsm_clr,dsm_ovfl, dsmditheroff, dem_count,
+               dem_out_l,dem_out_r);     //fenghui modified, 11/03/04
+               
+//parameter DATAPATH = 28;
+
+input[23:0] dsm_chan1,dsm_chan2;
+input       mclk512,reset,exchangeLR,dsm_clr,dsmditheroff;
+                    //dem_bp_l,dem_bp_r,dem_test_clr_l,dem_test_clr_r;    //fenghui modified, 11/03/04
+//input[4:0]          dem_tm_l,dem_tm_r; 
+input[1:0]          dem_count;
+//output              dem_assert_l,dem_assert_r;       //fenghui modified, 11/03/04
+output		    dsm_ovfl;
+//output[15:0]        dem_mode_sel_l,dem_mode_sel_r;       //fenghui modified, 11/03/04
+output[15:0]         dem_out_l,dem_out_r;    //fenghui modified, 11/03/04
+
+wire[4:0]           dsm_out;    //fenghui modified, 11/03/04
+wire                s0,s1,s2,s3;
+wire[4:0]           dsm_reg;
+reg [4:0]           dem_inL,dem_inR,dem_tempR,dem_tempL;
+wire[15:0]	    dem_out_l, dem_out_r;
+
+
+
+always@(dsm_reg)
+  case(dsm_reg[4:3])
+    2'b00:  dem_tempL<={2'b01,dsm_reg[2:0]};
+    2'b01:  dem_tempL<={2'b10,dsm_reg[2:0]};
+    2'b10:  dem_tempL<={2'b11,dsm_reg[2:0]};
+    2'b11:  dem_tempL<={2'b00,dsm_reg[2:0]};
+  endcase
+  
+always@(dsm_out)
+  case(dsm_out[4:3])
+    2'b00:  dem_tempR<={2'b01,dsm_out[2:0]};
+    2'b01:  dem_tempR<={2'b10,dsm_out[2:0]};
+    2'b10:  dem_tempR<={2'b11,dsm_out[2:0]};
+    2'b11:  dem_tempR<={2'b00,dsm_out[2:0]};
+  endcase
+
+always@(posedge reset or posedge mclk512)
+  if(reset)
+    begin
+      dem_inL<=0;
+      dem_inR<=0;
+    end
+  else
+    begin
+      dem_inL<=(s3)?dem_tempL:dem_inL;
+      dem_inR<=(s3)?dem_tempR:dem_inR;
+    end
+
+assign s0=(dem_count[1:0]==0)?1'b1:1'b0;
+assign s1=(dem_count[1:0]==1)?1'b1:1'b0;
+assign s2=(dem_count[1:0]==2)?1'b1:1'b0;
+assign s3=(dem_count[1:0]==3)?1'b1:1'b0;
+
+dsm_top dsm(.mclk        (mclk512),
+            .rst         (reset),
+            .s1          (s1),
+            .dsmditheroff(dsmditheroff),
+            .chan1_in    (dsm_chan1),
+            .chan2_in    (dsm_chan2),
+            .dt_sign     (dither),
+            .chan_sel    (dem_count[0]),
+            .int_sel     (dem_count[1]),
+            .sticky_clr  (dsm_clr),
+            .quan_out    (dsm_out),
+            .dsm_reg     (dsm_reg),
+            .ovfl_reg    (dsm_ovfl));
+            
+wire [4:0] dem_inL_ex = exchangeLR? dem_inR : dem_inL;
+wire [4:0] dem_inR_ex = exchangeLR? dem_inL : dem_inR;
+
+
+dem_top  dem_l(.clk(mclk512),
+    			 //.s0(s0),
+    			 //.s1(s1),
+    			 //.s2(s2),
+    			 .s3(s3),
+    		//	 .mclk_count(dem_count),
+    			 .reset(reset),
+    			 //.dem_bp(dem_bp_l),        //fenghui modified, 11/03/04
+    			 //.dem_tm(dem_tm_l),        //fenghui modified, 11/03/04 
+    			 //.selftest_clr(dem_test_clr_l),          //fenghui modified, 11/03/04
+    			 .data_in(dem_inL_ex),
+                         //.assert(dem_assert_l),           //fenghui modified, 11/03/04
+                         //.mode_sel(dem_mode_sel_l)        //fenghui modified, 11/03/04     
+                         .dem_out_reg(dem_out_l));              //fenghui modified, 11/03/04
+
+dem_top   dem_r(.clk(mclk512),
+    			 //.s0(s0),
+    			 //.s1(s1),
+    			 //.s2(s2),
+    			 .s3(s3),
+    		//	 .mclk_count(dem_count),
+    			 .reset(reset),
+    			 //.dem_bp(dem_bp_r),          //fenghui modified, 11/03/04
+    			 //.dem_tm(dem_tm_r),         //fenghui modified, 11/03/04
+    			 //.selftest_clr(dem_test_clr_r),             //fenghui modified, 11/03/04
+    			 .data_in(dem_inR_ex),
+                         //.assert(dem_assert_r),                     //fenghui modified, 11/03/04
+                         //.mode_sel(dem_mode_sel_r),                 //fenghui modified, 11/03/04
+                         .dem_out_reg(dem_out_r));                         //fenghui modified, 11/03/04
+                         
+
+endmodule

@@ -1,0 +1,63 @@
+set DESIGN dsm_dem_top
+set SYN_EFF medium
+set MAP_EFF medium
+set OPT_EFF medium
+set _REPORTS_PATH reports
+set _SDC_PATH SDC
+set SDC_CLK_PERIOD 40
+set SDC_INPUT_DELAY 0.1
+set SDC_OUTPUT_DELAY 0.2
+set OUTPUT_LOAD 1
+set DRIVING_CELL INVX12
+
+set_db init_lib_search_path ./LIB
+set_db init_hdl_search_path ./HDL
+set_db syn_generic_effort $SYN_EFF
+set_db syn_map_effort $MAP_EFF
+
+###############################################################
+## Library setup
+###############################################################
+set_db library slow_vdd1v0_basicCells.lib
+
+####################################################################
+## Load Design
+####################################################################
+read_hdl dsm_dem_top.v dsm_top.v dem_top.v adders.v
+elaborate $DESIGN
+
+####################################################################
+## Constraints Setup
+####################################################################
+create_clock [get_ports mclk512] -name mclk512 -period $SDC_CLK_PERIOD
+set_input_delay -clock mclk512 $SDC_INPUT_DELAY [all_inputs]
+set_output_delay -clock mclk512 $SDC_OUTPUT_DELAY [all_outputs]
+set_driving_cell -lib_cell $DRIVING_CELL [all_inputs]
+set_load_unit -femtofarads 1.0
+set_load $OUTPUT_LOAD [all_outputs]
+
+puts "Create clock(clk1) period: ${SDC_CLK_PERIOD} ns"
+puts "Set input delay to ${SDC_INPUT_DELAY} ns for all inputs"
+puts "Set output delay to ${SDC_OUTPUT_DELAY} ns for all outputs"
+
+
+####################################################################
+## Synthesizing to generic 
+####################################################################
+puts "Start synthesis"
+syn_generic
+
+####################################################################
+## Synthesizing to gates
+####################################################################
+syn_map 
+
+
+gui_show
+report timing > ./$_REPORTS_PATH/timing_$DESIGN.rpt
+report summary > ./$_REPORTS_PATH/summary_$DESIGN.rpt
+write_sdc > ./$_SDC_PATH/$DESIGN.sdc
+write_hdl > ./HDL/syn_$DESIGN.v
+write_design -base_name ./syn/$DESIGN
+puts "Write design to syn folder"
+

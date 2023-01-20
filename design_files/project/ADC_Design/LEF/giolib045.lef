@@ -1,0 +1,448 @@
+VERSION 5.7 ;
+BUSBITCHARS "[]" ;
+DIVIDERCHAR "/" ;
+ 
+UNITS
+    DATABASE MICRONS 2000  ;
+END UNITS
+ 
+ MANUFACTURINGGRID    0.005000 ;
+ 
+SITE IOSite
+    SYMMETRY x y r90 ;
+    CLASS PAD ;
+    SIZE 1.000 BY 240.000 ;
+END IOSite
+ 
+SITE CornerSite
+    SYMMETRY x y r90 ;
+    CLASS PAD ;
+    SIZE 240.000 BY 240.000 ;
+END CornerSite
+
+MACRO PADDI
+  CLASS PAD ;
+  ORIGIN 0 80 ;
+  FOREIGN PADDI 0 -80 ;
+  SIZE 60 BY 240 ;
+  SYMMETRY X Y R90 ;
+  SITE IOSite ;
+  PIN PAD
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal11 ;
+        RECT 28 0 32 1.42 ;
+    END
+  END PAD
+  PIN Y
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal3 ;
+        RECT 27.55 159.275 28.275 160 ;
+    END
+  END Y
+  OBS
+    LAYER Metal1 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal2 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal3 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal4 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal5 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal6 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal7 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal8 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal9 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal10 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal11 ;
+      RECT 0 -80 60 160 ;
+  END
+END PADDI
+
+
+MACRO PADDO
+  CLASS PAD ;
+  ORIGIN 0 80 ;
+  FOREIGN PADDO 0 -80 ;
+  SIZE 60 BY 240 ;
+  SYMMETRY X Y R90 ;
+  SITE IOSite ;
+  PIN A
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal3 ;
+        RECT 29.5 159.275 30.225 160 ;
+    END
+  END A
+  PIN PAD
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal11 ;
+        RECT 28 -1.4 32 1.415 ;
+    END
+  END PAD
+  OBS
+    LAYER Metal1 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal2 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal3 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal4 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal5 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal6 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal7 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal8 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal9 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal10 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal11 ;
+      RECT 0 -80 60 160 ;
+  END
+END PADDO
+
+
+PROPERTYDEFINITIONS
+  MACRO oaTaper STRING ;
+END PROPERTYDEFINITIONS
+
+MACRO PADVDD
+  CLASS PAD ;
+  ORIGIN 0 80 ;
+  FOREIGN PADVDD 0 -80 ;
+  SIZE 60 BY 240 ;
+  SYMMETRY X Y R90 ;
+  SITE IOSite ;
+  PIN VDD
+    DIRECTION INOUT ;
+    USE POWER ;
+    NETEXPR "VDD VDD!" ;
+    PORT
+      CLASS CORE ;
+      LAYER Metal3 ;
+        RECT 53.815 156.64 57.165 160 ;
+      LAYER Metal2 ;
+        RECT 53.815 156.64 57.165 160 ;
+      LAYER Metal3 ;
+        RECT 2.855 156.64 6.205 160 ;
+      LAYER Metal2 ;
+        RECT 2.855 156.64 6.205 160 ;
+    END
+  END VDD
+  OBS
+    LAYER Metal1 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal2 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal3 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal4 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal5 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal6 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal7 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal8 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal9 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal10 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal11 ;
+      RECT 0 -80 60 160 ;
+  END
+  PROPERTY oaTaper "virtuosoDefaultTaper" ;
+END PADVDD
+
+
+PROPERTYDEFINITIONS
+  MACRO oaTaper STRING ;
+END PROPERTYDEFINITIONS
+
+MACRO PADVDDIOR
+  CLASS PAD ;
+  ORIGIN 0 80 ;
+  FOREIGN PADVDDIOR 0 -80 ;
+  SIZE 60 BY 240 ;
+  SYMMETRY X Y R90 ;
+  SITE IOSite ;
+  PIN VDDIOR
+    DIRECTION INOUT ;
+    USE POWER ;
+    NETEXPR "VDDIOR VDDIOR!" ;
+    PORT
+      CLASS CORE ;
+      LAYER Metal3 ;
+        RECT 53.815 156.64 57.165 160 ;
+      LAYER Metal2 ;
+        RECT 53.815 156.64 57.165 160 ;
+      LAYER Metal3 ;
+        RECT 2.855 156.64 6.205 160 ;
+      LAYER Metal2 ;
+        RECT 2.855 156.64 6.205 160 ;
+    END
+  END VDDIOR
+  OBS
+    LAYER Metal1 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal2 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal3 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal4 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal5 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal6 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal7 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal8 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal9 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal10 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal11 ;
+      RECT 0 -80 60 160 ;
+  END
+  PROPERTY oaTaper "virtuosoDefaultTaper" ;
+END PADVDDIOR
+
+
+PROPERTYDEFINITIONS
+  MACRO extractNetShortViolationLimit INTEGER ;
+  MACRO extractCellviewShortViolationLimit INTEGER ;
+  MACRO extractStopLevel INTEGER ;
+  MACRO deviceExtractType STRING ;
+  MACRO extractCellviewOpenViolationLimit INTEGER ;
+  MACRO extractNetOpenViolationLimit INTEGER ;
+  MACRO lxChainAlignPMOS STRING ;
+  MACRO lxGroundNetNames STRING ;
+  MACRO lxGetSignifDigits INTEGER ;
+  MACRO extractCellviewIllegalConnectionLimit INTEGER ;
+  MACRO lxStackPartitionParameters STRING ;
+  MACRO setupConstraintGroup STRING ;
+  MACRO lxChainAlignNMOS STRING ;
+  MACRO lxSupplyNetNames STRING ;
+  MACRO lxGenerationOrientation STRING ;
+  MACRO lxInternalLibName STRING ;
+  MACRO lxInternalConfigLibName STRING ;
+  MACRO lxInternalTop STRING ;
+  MACRO lxInternalType STRING ;
+  MACRO lxInternalCellName STRING ;
+  MACRO lxInternalViewName STRING ;
+  MACRO lxInternalConfigCellName STRING ;
+  MACRO lxInternalConfigViewName STRING ;
+  MACRO oaTaper STRING ;
+END PROPERTYDEFINITIONS
+
+
+MACRO PADVSS
+  CLASS PAD ;
+  ORIGIN 0 80 ;
+  FOREIGN PADVSS 0 -80 ;
+  SIZE 60 BY 240 ;
+  SYMMETRY X Y R90 ;
+  SITE IOSite ;
+  PIN VSS
+    DIRECTION INOUT ;
+    USE GROUND ;
+    NETEXPR "VSS VSS!" ;
+    PORT
+      CLASS CORE ;
+      LAYER Metal3 ;
+        RECT 53.805 156.64 57.155 160 ;
+        RECT 2.845 156.64 6.195 160 ;
+      LAYER Metal2 ;
+        RECT 53.805 156.64 57.155 160 ;
+        RECT 2.845 156.64 6.195 160 ;
+    END
+  END VSS
+  OBS
+    LAYER Metal1 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal2 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal3 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal4 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal5 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal6 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal7 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal8 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal9 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal10 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal11 ;
+      RECT 0 -80 60 160 ;
+  END
+  PROPERTY extractNetShortViolationLimit 100 ;
+  PROPERTY extractCellviewShortViolationLimit 1000 ;
+  PROPERTY extractStopLevel 0 ;
+  PROPERTY deviceExtractType "pcells" ;
+  PROPERTY extractCellviewOpenViolationLimit 2000 ;
+  PROPERTY extractNetOpenViolationLimit 1000 ;
+  PROPERTY lxChainAlignPMOS "Top" ;
+  PROPERTY lxGroundNetNames "gnd gnd! gnd: vss vss! vss:" ;
+  PROPERTY lxGetSignifDigits 0 ;
+  PROPERTY extractCellviewIllegalConnectionLimit 1000 ;
+  PROPERTY lxStackPartitionParameters "(0 100)" ;
+  PROPERTY setupConstraintGroup "virtuosoDefaultExtractorSetup" ;
+  PROPERTY lxChainAlignNMOS "Bottom" ;
+  PROPERTY lxSupplyNetNames "vcc vcc! vcc: vdd vdd! vdd:" ;
+  PROPERTY lxGenerationOrientation "preserve" ;
+  PROPERTY lxInternalLibName "giolib045" ;
+  PROPERTY lxInternalConfigLibName "giolib045" ;
+  PROPERTY lxInternalTop "" ;
+  PROPERTY lxInternalType "CELLVIEW" ;
+  PROPERTY lxInternalCellName "PADVSS" ;
+  PROPERTY lxInternalViewName "schematic" ;
+  PROPERTY lxInternalConfigCellName "PADVSS" ;
+  PROPERTY lxInternalConfigViewName "physConfig" ;
+  PROPERTY oaTaper "virtuosoDefaultTaper" ;
+END PADVSS
+
+
+MACRO PADVSSIOR
+  CLASS PAD ;
+  ORIGIN 0 80 ;
+  FOREIGN PADVSSIOR 0 -80 ;
+  SIZE 60 BY 240 ;
+  SYMMETRY X Y R90 ;
+  SITE IOSite ;
+  PIN VSSIOR
+    DIRECTION INOUT ;
+    USE GROUND ;
+    NETEXPR "VSSIOR VSSIOR!" ;
+    PORT
+      CLASS CORE ;
+      LAYER Metal3 ;
+        RECT 53.805 156.64 57.155 160 ;
+        RECT 2.845 156.64 6.195 160 ;
+      LAYER Metal2 ;
+        RECT 53.805 156.64 57.155 160 ;
+        RECT 2.845 156.64 6.195 160 ;
+    END
+  END VSSIOR
+  OBS
+    LAYER Metal1 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal2 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal3 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal4 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal5 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal6 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal7 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal8 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal9 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal10 ;
+      RECT 0 -80 60 160 ;
+    LAYER Metal11 ;
+      RECT 0 -80 60 160 ;
+  END
+END PADVSSIOR
+
+
+MACRO padIORINGCORNER
+  CLASS ENDCAP BOTTOMLEFT ;
+  ORIGIN 80 80 ;
+  FOREIGN padIORINGCORNER -80 -80 ;
+  SIZE 240 BY 240 ;
+  SYMMETRY X Y R90 ;
+  SITE CornerSite ;
+  OBS
+    LAYER Metal1 ;
+      RECT -80 -80 160 160 ;
+    LAYER Metal2 ;
+      RECT -80 -80 160 160 ;
+    LAYER Metal3 ;
+      RECT -80 -80 160 160 ;
+    LAYER Metal4 ;
+      RECT -80 -80 160 160 ;
+    LAYER Metal5 ;
+      RECT -80 -80 160 160 ;
+    LAYER Metal6 ;
+      RECT -80 -80 160 160 ;
+    LAYER Metal7 ;
+      RECT -80 -80 160 160 ;
+    LAYER Metal8 ;
+      RECT -80 -80 160 160 ;
+    LAYER Metal9 ;
+      RECT -80 -80 160 160 ;
+    LAYER Metal10 ;
+      RECT -80 -80 160 160 ;
+    LAYER Metal11 ;
+      RECT -80 -80 160 160 ;
+  END
+END padIORINGCORNER
+
+
+MACRO padIORINGFEED1
+  CLASS PAD SPACER ;
+  ORIGIN 0 80 ;
+  FOREIGN padIORINGFEED1 0 -80 ;
+  SIZE 1 BY 240 ;
+  SYMMETRY X Y R90 ;
+  SITE IOSite ;
+  OBS
+    LAYER Metal1 ;
+      RECT 0 -80 1 160 ;
+    LAYER Metal2 ;
+      RECT 0 -80 1 160 ;
+    LAYER Metal3 ;
+      RECT 0 -80 1 160 ;
+    LAYER Metal4 ;
+      RECT 0 -80 1 160 ;
+    LAYER Metal5 ;
+      RECT 0 -80 1 160 ;
+    LAYER Metal6 ;
+      RECT 0 -80 1 160 ;
+    LAYER Metal7 ;
+      RECT 0 -80 1 160 ;
+    LAYER Metal8 ;
+      RECT 0 -80 1 160 ;
+    LAYER Metal9 ;
+      RECT 0 -80 1 160 ;
+    LAYER Metal10 ;
+      RECT 0 -80 1 160 ;
+    LAYER Metal11 ;
+      RECT 0 -80 1 160 ;
+  END
+END padIORINGFEED1
+
+END LIBRARY

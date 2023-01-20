@@ -1,0 +1,12 @@
+current_design dsm_dem_chip
+create_clock -name mclk512 -period 40 [get_pins dsm_dem0/mclk512]
+set_input_delay -clock [get_clocks mclk512] -add_delay 4 [get_ports reset]
+set_input_delay -clock [get_clocks mclk512] -add_delay 4 [get_ports exchangeLR]
+set_input_delay -clock [get_clocks mclk512] -add_delay 4 [get_ports dsm_clr]
+set_input_delay -clock [get_clocks mclk512] -add_delay 4 [get_ports dsmditheroff]
+set_input_delay -clock [get_clocks mclk512] -add_delay 4 [get_ports dsm_chan1]
+set_input_delay -clock [get_clocks mclk512] -add_delay 4 [get_ports dsm_chan2]
+set_input_delay -clock [get_clocks mclk512] -add_delay 4 [get_ports dem_count]
+set_output_delay -clock [get_clocks mclk512] -add_delay 8 [get_ports dsm_ovfl]
+set_output_delay -clock [get_clocks mclk512] -add_delay 8 [get_ports dem_out_l]
+set_output_delay -clock [get_clocks mclk512] -add_delay 8 [get_ports dem_out_r]

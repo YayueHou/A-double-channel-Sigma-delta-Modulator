@@ -1,0 +1,80 @@
+# PPCMD 1 
+# sroute -nets {VDD VSS}
+# 4 
+# 16 
+# 0 
+# 0 
+# 0 
+# 0 
+# BOX_LIST 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# END_NET_INFO_LIST 
+# END_PPCMD 1 
+
+# PPCMD 2 
+# addStripe -nets {VSS VDD} -layer 7 -direction horizontal -width 0.4 -spacing 1 -set_to_set_distance 10 -start 1
+# 3 
+# 2 
+# 1 
+# 0 
+# 0 
+# 2 
+# BOX_LIST 
+# 25600 27100 204400 199440 0 
+# 28800 30300 201200 196240 0 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# VDD 800 7 0 4800 193040 20000 0 0 
+# VSS 800 7 0 2000 193040 20000 0 0 
+# END_NET_INFO_LIST 
+# END_PPCMD 2 
+
+# PPCMD 3 
+# addStripe -nets {VSS VDD} -layer 6 -direction vertical -width 0.4 -spacing 1 -set_to_set_distance 10 -start 1
+# 2 
+# 2 
+# 1 
+# 0 
+# 0 
+# 2 
+# BOX_LIST 
+# 25600 25900 204400 198240 0 
+# 28800 29100 201200 195040 0 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# VDD 800 6 0 4800 199200 20000 0 0 
+# VSS 800 6 0 2000 199200 20000 0 0 
+# END_NET_INFO_LIST 
+# END_PPCMD 3 
+
+# PPCMD 4 
+# addRing -nets {VDD VSS} -width 0.6 -spacing 1 -layer {top 7 bottom 7 left 6 right 6}
+# 1 
+# 32 
+# 1 
+# 0 
+# 0 
+# 0 
+# BOX_LIST 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# VSS 1200 7 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 115600 26500 115600 198840 
+# END_RING_PT_INFO_LIST 
+# VSS 1200 6 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 26200 112670 205000 112670 
+# END_RING_PT_INFO_LIST 
+# VDD 1200 7 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 115600 29700 115600 195640 
+# END_RING_PT_INFO_LIST 
+# VDD 1200 6 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 29400 112670 201800 112670 
+# END_RING_PT_INFO_LIST 
+# END_NET_INFO_LIST 
+# END_PPCMD 4 
+
